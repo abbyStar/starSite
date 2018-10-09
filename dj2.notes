@@ -1,0 +1,37 @@
+install python 3.6, change default version to 3.6
+	edit .bashrc include alias python='/usr/bin/python3.6'
+install a venv
+	python3 -m venv myvenv
+activate venv
+	source myvenv/bin/activate
+install django, update pip
+	python3 -m pip install --upgrade pip
+open a requirements.txt file in main dir....put this in it
+	Django~=2.0.6
+run this to install django
+	pip install -r requirements.txt
+start a django site
+	django-admin startproject mysite .
+go into starsite/settings.py, edit the timezone, and LANGUAGE
+	America/Las_Angeles
+add static root to end of settings.py
+	STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+edit ALLOWED_HOSTS
+	'127.0.0.1', '.pythonanywhere.com'
+set up a database.....will need to be different for a real postgres
+	python manage.py migrate
+	grrrr ....this wouldn't fucking work.......had to use:
+		python3 manage.py migrate .......grrrr!!!!!
+	no way a novice figures a basic mistake like this out !!!!!
+setup an app
+	python3 manage.py startapp eval
+edit settings.py INSTALLED_APPS
+	add a line with 'eval', 
+	comma at the end matters
+put your model in eval/models.py
+	python3 manage.py makemigrations evaluations(or whatever app name)
+edit eval/admin.py to import your Post model so you can reach it from admin
+	from .models import Post
+	admin.site.register(Post)
+create a superuser
+	python3 manage.py createsuperuser
